@@ -20,9 +20,9 @@ public class NaiveSolver implements ISolver {
         Backpack result = new Backpack(backpackWeight);
 
         Collections.sort(data, (first, second) ->
-            clamp(-(first.getValue()/first.getWeight()) - (second.getValue()/second.getWeight()))
+            clamp(-((first.getValue()/first.getWeight()) - (second.getValue()/second.getWeight())))
         );
-
+        ;
         for(Item item: data){
             try{
                 result.addItem(item);

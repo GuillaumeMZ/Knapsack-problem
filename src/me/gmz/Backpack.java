@@ -22,19 +22,28 @@ public class Backpack {
         throw new ItemCannotBeAddedException("This item cannot be added.");
     }
 
-    public float getCurrentWeight(){
-        return currentWeight;
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("This backpack, which can contain ")
+            .append(maximumWeight)
+            .append("kg of objects contains ")
+            .append(items.size())
+            .append(" items, for a total weight of ")
+            .append(currentWeight)
+            .append(" (")
+            .append(maximumWeight - currentWeight)
+            .append(" kg remaining). Its value is ")
+            .append(currentValue).append("$\n");
+
+        for(Item item : items){
+            sb.append("- ").append(item.getName()).append(" (value: ").append(item.getValue()).append(", weight: ").append(item.getWeight()).append(")\n");
+        }
+
+        return sb.toString();
     }
 
-    public float getCurrentValue(){
-        return currentValue;
-    }
-
-    public float getFreeSpace(){
-        return maximumWeight - currentWeight;
-    }
-
-    private ArrayList<Item> items;
+    private final ArrayList<Item> items;
     private float currentWeight;
     private float currentValue;
     private final float maximumWeight;

@@ -21,6 +21,7 @@ public class FileDataReader implements IDataReader {
         while (buffer != null){
             try{
                 buffer = file.readLine();
+                if(buffer == null) break;
             }catch (IOException e){
                 System.err.println(e);
             }
