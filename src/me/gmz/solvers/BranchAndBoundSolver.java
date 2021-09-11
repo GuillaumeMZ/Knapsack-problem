@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class BranchAndBoundSolver implements ISolver {
     @Override
-    public Backpack solve(ArrayList<Item> data, int backpackWeight) {
+    public Backpack solve(ArrayList<Item> data, float backpackWeight) {
         return null;
     }
 }
