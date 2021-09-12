@@ -1,5 +1,6 @@
 package me.gmz;
 
+import me.gmz.solvers.DynamicSolver;
 import me.gmz.solvers.NaiveSolver;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class Main {
         FileDataReader dataReader = new FileDataReader(filePath);
         ArrayList<Item> items = dataReader.readData();
 
-        Backpack backpack = new NaiveSolver().solve(items, backpack_weight);
+        Backpack backpack = new DynamicSolver().solve(items, backpack_weight);
         System.out.println(backpack);
     }
 }
