@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class DynamicSolver implements ISolver {
     @Override
     public Backpack solve(ArrayList<Item> data, float backpackWeight) {
+        //TODO divide this in multiple methods
         Backpack result = new Backpack(backpackWeight);
 
         int weight = (int)(backpackWeight*10);
@@ -38,21 +39,20 @@ public class DynamicSolver implements ISolver {
         while(M[i][j] == M[i][j-1])
             j--;
 
-        while(j > 0){
-            while(i > 0 && M[i][j] == M[i-1][j]){
+        while(j > 0) {
+            while (i > 0 && M[i][j] == M[i - 1][j]) {
                 i--;
             }
-            j = j - (int)(data.get(i).getWeight()*10);
-            if(j >= 0){
+            j = j - (int) (data.get(i).getWeight() * 10);
+            if (j >= 0) {
                 try {
                     result.addItem(data.get(i));
-                }catch (ItemCannotBeAddedException e) {
-                    
+                } catch (ItemCannotBeAddedException e) {
+
                 }
             }
             i--;
         }
-        //2 4 5 7 8
         return result;
     }
 }

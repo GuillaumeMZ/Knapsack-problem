@@ -17,7 +17,7 @@ public class Main {
         FileDataReader dataReader = new FileDataReader(filePath);
         ArrayList<Item> items = dataReader.readData();
 
-        Backpack backpack = new DynamicSolver().solve(items, backpack_weight);
+        Backpack backpack = new NaiveSolver().solve(items, backpack_weight);
         System.out.println(backpack);
     }
 }
