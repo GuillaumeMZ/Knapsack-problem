@@ -3,6 +3,7 @@ package me.gmz;
 import me.gmz.backpack.Backpack;
 import me.gmz.backpack.Item;
 import me.gmz.readers.FileDataReader;
+import me.gmz.solvers.BranchAndBoundSolver;
 import me.gmz.solvers.NaiveSolver;
 
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class Main {
         FileDataReader dataReader = new FileDataReader(filePath);
         ArrayList<Item> items = dataReader.readData();
 
-        Backpack backpack = new NaiveSolver().solve(items, backpack_weight);
+        Backpack backpack = new BranchAndBoundSolver().solve(items, backpack_weight);
         System.out.println(backpack);
     }
 }

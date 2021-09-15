@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public class QuickSort {
+    //TODO better naming
     private static final Random r = new Random();
 
     public static<T> void sort(List<T> array, Comparator<? super T> comparator){

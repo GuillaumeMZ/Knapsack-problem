@@ -39,8 +39,10 @@ public class Node<T> {
         this.parent = parent;
     }
 
-    public void addChild(Node<T> child){
-        children.add(child);
+    public Node<T> addChild(T childValue){
+        Node<T> newNode = new Node<>(this, childValue);
+        children.add(newNode);
+        return newNode;
     }
 
     public List<Node<T>> getChildren(){
