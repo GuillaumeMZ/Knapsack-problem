@@ -1,9 +1,9 @@
 package me.gmz.solvers;
 
-import me.gmz.Backpack;
-import me.gmz.ISolver;
-import me.gmz.Item;
-import me.gmz.ItemCannotBeAddedException;
+import me.gmz.backpack.Backpack;
+import me.gmz.backpack.ISolver;
+import me.gmz.backpack.Item;
+import me.gmz.backpack.ItemCannotBeAddedException;
 
 import java.util.ArrayList;
 

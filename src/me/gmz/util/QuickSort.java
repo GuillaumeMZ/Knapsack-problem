@@ -1,15 +1,11 @@
-package me.gmz;
+package me.gmz.util;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
 public class QuickSort {
-    private static final Random r;
-
-    static {
-        r = new Random();
-    }
+    private static final Random r = new Random();
 
     public static<T> void sort(List<T> array, Comparator<? super T> comparator){
         quicksortRec(array, 0, array.size() - 1, comparator);

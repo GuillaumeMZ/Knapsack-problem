@@ -1,4 +1,4 @@
-package me.gmz;
+package me.gmz.backpack;
 
 public class Item {
     public Item(String name, float weight, float value){

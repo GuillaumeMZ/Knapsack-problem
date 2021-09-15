@@ -1,4 +1,4 @@
-package me.gmz;
+package me.gmz.backpack;
 
 import java.util.ArrayList;
 

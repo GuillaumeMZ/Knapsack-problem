@@ -1,6 +1,8 @@
 package me.gmz.tree;
 
 import java.util.LinkedList;
+import java.util.List;
+import java.util.function.Predicate;
 
 public class Node<T> {
     private T value;
@@ -18,7 +20,7 @@ public class Node<T> {
     public Node(Node<T> parent, T value){
         this.parent = parent;
         this.value = value;
-        this.children = new LinkedList<>();
+        children = new LinkedList<>();
     }
 
     public T getValue(){
@@ -41,11 +43,15 @@ public class Node<T> {
         children.add(child);
     }
 
-    public LinkedList<Node<T>> getChildren(){
+    public List<Node<T>> getChildren(){
         return children;
     }
 
     public void removeChild(int childIndex){
         children.remove(childIndex);
+    }
+
+    public void removeChildIf(Predicate<? super Node<T>> predicate){
+        children.removeIf(predicate);
     }
 }

@@ -1,4 +1,7 @@
-package me.gmz;
+package me.gmz.readers;
+
+import me.gmz.backpack.IDataReader;
+import me.gmz.backpack.Item;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
