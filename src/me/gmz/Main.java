@@ -4,6 +4,7 @@ import me.gmz.backpack.Backpack;
 import me.gmz.backpack.Item;
 import me.gmz.readers.FileDataReader;
 import me.gmz.solvers.BranchAndBoundSolver;
+import me.gmz.solvers.DynamicSolver;
 import me.gmz.solvers.NaiveSolver;
 
 import java.util.ArrayList;

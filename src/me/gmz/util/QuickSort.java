@@ -8,6 +8,7 @@ public class QuickSort {
     //TODO better naming
     private static final Random r = new Random();
 
+    //TODO default comparator
     public static<T> void sort(List<T> array, Comparator<? super T> comparator){
         quicksortRec(array, 0, array.size() - 1, comparator);
     }
