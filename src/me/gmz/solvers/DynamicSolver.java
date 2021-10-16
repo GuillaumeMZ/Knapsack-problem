@@ -3,7 +3,6 @@ package me.gmz.solvers;
 import me.gmz.backpack.Backpack;
 import me.gmz.backpack.ISolver;
 import me.gmz.backpack.Item;
-import me.gmz.backpack.ItemCannotBeAddedException;
 
 import java.util.ArrayList;
 
@@ -45,11 +44,7 @@ public class DynamicSolver implements ISolver {
             }
             j = j - (int) (data.get(i).getWeight() * 10);
             if (j >= 0) {
-                try {
-                    result.addItem(data.get(i));
-                } catch (ItemCannotBeAddedException e) {
-
-                }
+                result.addItem(data.get(i));
             }
             i--;
         }

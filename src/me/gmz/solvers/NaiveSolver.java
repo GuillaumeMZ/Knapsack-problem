@@ -3,7 +3,6 @@ package me.gmz.solvers;
 import me.gmz.backpack.Backpack;
 import me.gmz.backpack.ISolver;
 import me.gmz.backpack.Item;
-import me.gmz.backpack.ItemCannotBeAddedException;
 import me.gmz.util.QuickSort;
 
 import java.util.ArrayList;
@@ -18,11 +17,11 @@ public class NaiveSolver implements ISolver {
                 (int)Math.signum(-((first.getValue()/first.getWeight()) - (second.getValue()/second.getWeight())))
         );
 
-        for(Item item: data){
-            try{
-                result.addItem(item);
-            }catch (ItemCannotBeAddedException e){
-            }
+        for (Item current : data) {
+            if (result.getCurrentWeight() + current.getValue() > backpackWeight)
+                break;
+
+            result.addItem(current);
         }
 
         return result;
