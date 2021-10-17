@@ -17,7 +17,7 @@ public class QuickSort {
     private static<T> void quicksortRec(List<T> array, int fi, int li, Comparator<? super T> comparator){
         if(fi < li){
             int pi = r.nextInt(li - fi) + fi;
-            pi = partition(array, fi, array.size() - 1, pi, comparator);
+            pi = partition(array, fi, li, pi, comparator);
             quicksortRec(array, fi, pi-1, comparator);
             quicksortRec(array, pi+1, li, comparator);
         }
