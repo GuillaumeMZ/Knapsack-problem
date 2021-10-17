@@ -23,9 +23,9 @@ public class Backpack {
     }
 
     public void addItem(Item item){
-            items.add(item);
-            currentWeight += item.getWeight();
-            currentValue += item.getValue();
+        items.add(item);
+        currentWeight += item.getWeight();
+        currentValue += item.getValue();
     }
 
     public float getCurrentWeight() {

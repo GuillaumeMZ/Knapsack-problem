@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class FileDataReader implements IDataReader {
+    private BufferedReader file;
+
     public FileDataReader(String filePath){
         try{
             file = new BufferedReader(new FileReader(filePath));
@@ -33,6 +35,4 @@ public class FileDataReader implements IDataReader {
         }
         return items;
     }
-
-    private BufferedReader file;
 }
