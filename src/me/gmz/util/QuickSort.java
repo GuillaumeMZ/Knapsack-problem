@@ -1,5 +1,6 @@
 package me.gmz.util;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
@@ -22,24 +23,18 @@ public class QuickSort {
         }
     }
 
-    private static<T> void swap(List<T> array, int firstIndex, int secondIndex){
-        T temp = array.get(firstIndex);
-        array.set(firstIndex, array.get(secondIndex));
-        array.set(secondIndex, temp);
-    }
-
     private static<T> int partition(List<T> array, int fi, int li, int pi, Comparator<? super T> comparator){
-        swap(array, pi, li);
+        Collections.swap(array, pi, li);
 
         int j = fi;
         for(int i = j; i < li ; i++){
             if(comparator.compare(array.get(i), array.get(li)) <= 0){
-                swap(array, i, j);
+                Collections.swap(array, i, j);
                 j++;
             }
         }
 
-        swap(array, li, j);
+        Collections.swap(array, li, j);
         return j;
     }
 }

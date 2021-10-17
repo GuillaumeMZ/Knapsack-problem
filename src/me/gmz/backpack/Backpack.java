@@ -36,6 +36,10 @@ public class Backpack {
         return currentValue;
     }
 
+    public float getMaximumWeight() {
+        return maximumWeight;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

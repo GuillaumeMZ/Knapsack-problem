@@ -14,12 +14,12 @@ public class NaiveSolver implements ISolver {
         Backpack result = new Backpack(backpackWeight);
 
         QuickSort.sort(data, (first, second) ->
-                (int)Math.signum(-((first.getValue()/first.getWeight()) - (second.getValue()/second.getWeight())))
+                (int)Math.signum(-(first.getRatio() - second.getRatio()))
         );
 
         for (Item current : data) {
-            if (result.getCurrentWeight() + current.getValue() > backpackWeight)
-                break;
+            if (result.getCurrentWeight() + current.getWeight() > backpackWeight)
+                continue;
 
             result.addItem(current);
         }
