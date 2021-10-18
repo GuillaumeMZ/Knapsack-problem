@@ -23,17 +23,17 @@ public class BranchAndBoundSolver implements ISolver {
     }
 
     private void fillTree(Tree<Backpack> tree, int elementIndex) {
-        if(elementIndex == data.size() || tree.getValue().getCurrentValue() + getRemainingItemsValue(elementIndex) < minimal.getCurrentValue()) {
+        if (elementIndex == data.size() || tree.getValue().getCurrentValue() + getRemainingItemsValue(elementIndex) < minimal.getCurrentValue()) {
             return;
         }
 
         Backpack next = new Backpack(tree.getValue());
         next.addItem(data.get(elementIndex));
 
-        if(next.getCurrentWeight() <= next.getMaximumWeight()) {
+        if (next.getCurrentWeight() <= next.getMaximumWeight()) {
             tree.setLeftSubTree(new Tree<>(next));
 
-            if(next.getCurrentValue() > minimal.getCurrentValue())
+            if (next.getCurrentValue() > minimal.getCurrentValue())
                 minimal = next;
 
             fillTree(tree.getLeftSubTree(), elementIndex + 1);

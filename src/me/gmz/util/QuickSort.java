@@ -6,35 +6,37 @@ import java.util.List;
 import java.util.Random;
 
 public class QuickSort {
-    //TODO better naming
-    private static final Random r = new Random();
+    private static final Random random = new Random();
 
-    //TODO default comparator
+    public static<T extends Comparable<T>> void sort(List<T> array) {
+        sort(array, T::compareTo);
+    }
+
     public static<T> void sort(List<T> array, Comparator<? super T> comparator){
         quicksortRec(array, 0, array.size() - 1, comparator);
     }
 
-    private static<T> void quicksortRec(List<T> array, int fi, int li, Comparator<? super T> comparator){
-        if(fi < li){
-            int pi = r.nextInt(li - fi) + fi;
-            pi = partition(array, fi, li, pi, comparator);
-            quicksortRec(array, fi, pi-1, comparator);
-            quicksortRec(array, pi+1, li, comparator);
+    private static<T> void quicksortRec(List<T> array, int firstIndex, int lastIndex, Comparator<? super T> comparator){
+        if(firstIndex < lastIndex){
+            int pivotIndex = random.nextInt(lastIndex - firstIndex) + firstIndex;
+            pivotIndex = partition(array, firstIndex, lastIndex, pivotIndex, comparator);
+            quicksortRec(array, firstIndex, pivotIndex-1, comparator);
+            quicksortRec(array, pivotIndex+1, lastIndex, comparator);
         }
     }
 
-    private static<T> int partition(List<T> array, int fi, int li, int pi, Comparator<? super T> comparator){
-        Collections.swap(array, pi, li);
+    private static<T> int partition(List<T> array, int firstIndex, int lastIndex, int pivotIndex, Comparator<? super T> comparator){
+        Collections.swap(array, pivotIndex, lastIndex);
 
-        int j = fi;
-        for(int i = j; i < li ; i++){
-            if(comparator.compare(array.get(i), array.get(li)) <= 0){
+        int j = firstIndex;
+        for(int i = j; i < lastIndex ; i++){
+            if(comparator.compare(array.get(i), array.get(lastIndex)) <= 0){
                 Collections.swap(array, i, j);
                 j++;
             }
         }
 
-        Collections.swap(array, li, j);
+        Collections.swap(array, lastIndex, j);
         return j;
     }
 }

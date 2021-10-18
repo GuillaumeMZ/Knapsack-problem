@@ -16,13 +16,13 @@ public class Main {
         assert args.length == 3 : "There is not enough arguments !"; //TODO switch to a if + exception
         String filePath = args[0];
         //float backpack_weight = Float.parseFloat(args[1]); //TODO check validity
-        float backpack_weight = 18;
+        float backpack_weight = 12;
         //String algorithm = args[2];
 
         FileDataReader dataReader = new FileDataReader(filePath);
         ArrayList<Item> items = dataReader.readData();
 
-        Backpack backpack = new BranchAndBoundSolver().solve(items, backpack_weight);
+        Backpack backpack = new DynamicSolver().solve(items, backpack_weight);
         System.out.println(backpack);
     }
 }

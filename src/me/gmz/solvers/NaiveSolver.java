@@ -12,10 +12,10 @@ public class NaiveSolver implements ISolver {
     @Override
     public Backpack solve(ArrayList<Item> data, float backpackWeight) {
         Backpack result = new Backpack(backpackWeight);
-        data = new ArrayList<>(data);
+        data = new ArrayList<>(data); //We are making a copy of the datalist so the original list order stays the same
 
         QuickSort.sort(data, (first, second) ->
-                (int)Math.signum(-(first.getRatio() - second.getRatio()))
+                (int)Math.signum(second.getRatio() - first.getRatio())
         );
 
         for (Item current : data) {
