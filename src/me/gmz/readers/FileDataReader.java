@@ -17,7 +17,6 @@ public class FileDataReader implements IDataReader {
             file = new BufferedReader(new FileReader(filePath));
         }catch (FileNotFoundException e){
             System.err.println("File " + filePath + " wasn't found.");
-            //Test
         }
     }
 

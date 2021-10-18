@@ -16,7 +16,7 @@ public class Main {
         assert args.length == 3 : "There is not enough arguments !"; //TODO switch to a if + exception
         String filePath = args[0];
         //float backpack_weight = Float.parseFloat(args[1]); //TODO check validity
-        float backpack_weight = 45;
+        float backpack_weight = 18;
         //String algorithm = args[2];
 
         FileDataReader dataReader = new FileDataReader(filePath);

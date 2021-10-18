@@ -8,18 +8,22 @@ import me.gmz.tree.Tree;
 import java.util.ArrayList;
 
 public class BranchAndBoundSolver implements ISolver {
+    private Backpack minimal;
+    private ArrayList<Item> data;
+
     @Override
     public Backpack solve(ArrayList<Item> data, float backpackWeight) {
-        Backpack minimal = new NaiveSolver().solve(data, backpackWeight); //Minimal value
+        minimal = new NaiveSolver().solve(data, backpackWeight); //Minimal value
+        this.data = data;
 
         Tree<Backpack> tree = new Tree<>(new Backpack(backpackWeight)); //The first value of the tree is the empty set
-        fillTree(tree, data, minimal.getCurrentValue(), 0);
+        fillTree(tree, 0);
 
-        return getMaximumValue(tree).getValue();
+        return minimal; //The last minimal value is the maximal value
     }
 
-    private void fillTree(Tree<Backpack> tree, ArrayList<Item> data, float minimalBorne, int elementIndex) {
-        if(elementIndex == data.size() || tree.getValue().getCurrentValue() + getRemainingItemsValue(data, elementIndex) < minimalBorne) {
+    private void fillTree(Tree<Backpack> tree, int elementIndex) {
+        if(elementIndex == data.size() || tree.getValue().getCurrentValue() + getRemainingItemsValue(elementIndex) < minimal.getCurrentValue()) {
             return;
         }
 
@@ -28,28 +32,18 @@ public class BranchAndBoundSolver implements ISolver {
 
         if(next.getCurrentWeight() <= next.getMaximumWeight()) {
             tree.setLeftSubTree(new Tree<>(next));
-            fillTree(tree.getLeftSubTree(), data, minimalBorne, elementIndex + 1);
+
+            if(next.getCurrentValue() > minimal.getCurrentValue())
+                minimal = next;
+
+            fillTree(tree.getLeftSubTree(), elementIndex + 1);
         }
 
         tree.setRightSubTree(new Tree<>(new Backpack(tree.getValue())));
-        fillTree(tree.getRightSubTree(), data, minimalBorne, elementIndex + 1);
+        fillTree(tree.getRightSubTree(), elementIndex + 1);
     }
 
-    private Tree<Backpack> getMaximumValue(Tree<Backpack> tree) { //Since the tree doesn't have a combination whose value is greater than the maximum, we don't need to pass the maximum as an argument
-        if(tree.getLeftSubTree() == null && tree.getRightSubTree() == null)
-            return tree;
-        if(tree.getLeftSubTree() == null)
-            return getMaximumValue(tree.getRightSubTree());
-        if(tree.getRightSubTree() == null)
-            return getMaximumValue(tree.getLeftSubTree());
-
-        Tree<Backpack> resultLeft = getMaximumValue(tree.getLeftSubTree());
-        Tree<Backpack> resultRight = getMaximumValue(tree.getRightSubTree());
-
-        return resultLeft.getValue().getCurrentValue() > resultRight.getValue().getCurrentValue() ? resultLeft : resultRight;
-    }
-
-    private float getRemainingItemsValue(ArrayList<Item> data, int indexStart) {
+    private float getRemainingItemsValue(int indexStart) {
         float sum = 0;
         for(; indexStart < data.size(); ++indexStart)
             sum += data.get(indexStart).getValue();
